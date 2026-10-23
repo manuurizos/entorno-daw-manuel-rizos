@@ -16,10 +16,15 @@
 Resultado de `java -version` y `node -v` **antes** de instalar nada:
 
 ```
-pega aquí
+@manuurizos ➜ /workspaces/entorno-daw-manuel-rizos (main) $ java -version
+bash: java: command not found
+@manuurizos ➜ /workspaces/entorno-daw-manuel-rizos (main) $ node -v
+bash: node: command not found
 ```
 
 ¿Por qué crees que aparece ese mensaje? (relaciónalo con la diapositiva «Problemas habituales del entorno»)
+
+porque el entorno utiliza una imagen base limpia y minima que todavia no tiene instalado ningun lenguage de programacion. 
 
 > 
 
@@ -28,7 +33,14 @@ pega aquí
 Resultado de `java -version`, `node -v` y `jupyter lab --version` **después**:
 
 ```
-pega aquí
+@manuurizos ➜ /workspaces/entorno-daw-manuel-rizos (main) $ java -version
+openjdk version "27" 2026-09-15
+OpenJDK Runtime Environment Temurin-27+35 (build 27+35)
+OpenJDK 64-Bit Server VM Temurin-27+35 (build 27+35, mixed mode, sharing)
+@manuurizos ➜ /workspaces/entorno-daw-manuel-rizos (main) $ node -v
+v24.22.1
+@manuurizos ➜ /workspaces/entorno-daw-manuel-rizos (main) $ jupyter lab --version
+4.6.4
 ```
 
 ¿Qué líneas nuevas han aparecido en `devcontainer.json`? Explica con tus palabras qué hace cada una:
@@ -37,16 +49,29 @@ pega aquí
 
 ### 1.3. Comparativa de los dos IDE (paso 6)
 
-|                                         | Editor de GitHub Codespaces | JupyterLab |
-|-----------------------------------------|-----------------------------|------------|
-| ¿Libre o propietario?                   |                             |            |
-| Licencia / empresa o comunidad          |                             |            |
-| ¿Tiene coste? ¿Con qué límites?         |                             |            |
-| ¿Se puede usar fuera de GitHub?         |                             |            |
-| Lo que más me ha gustado                |                             |            |
-| Lo que menos me ha gustado              |                             |            |
-| ¿Para qué tipo de trabajo lo elegiría?  |                             |            |
+Aquí tienes la tabla completa y lista para copiar y pegar directamente en el apartado 1.3 de tu documento `docs/entorno.md`:
 
+|  | Editor de GitHub Codespaces | JupyterLab |
+| --- | --- | --- |
+| **¿Libre o propietario?** | Propietario (desarrollado por GitHub, propiedad de Microsoft) | Libre (Open Source)
+
+ |
+| **Licencia / empresa o comunidad** | Privativa / Comercial (GitHub, Microsoft) | Licencia BSD de 3 cláusulas / Comunidad Project Jupyter |
+| **¿Tiene coste? ¿Con qué límites?** | Modelo freemium; cuenta gratuita con límite mensual de horas (aprox. 60h en máquina básica) y pago por uso adicional
+
+ | Gratuito y sin límites al ser de código abierto |
+| **¿Se puede usar fuera de GitHub?** | No, está limitado exclusivamente al ecosistema de GitHub | Sí, se puede instalar y ejecutar localmente en cualquier ordenador o servidor independiente |
+| **Lo que más me ha gustado** | Que no requiere instalación local y ofrece un entorno completo en la nube desde el navegador
+
+ | Su interfaz interactiva y visual basada en pestañas en el navegador
+
+ |
+| **Lo que menos me ha gustado** | Los límites de tiempo de uso de la cuenta gratuita
+
+ | Está más orientado a Python/datos y requiere configuración extra para otros lenguajes |
+| **¿Para qué tipo de trabajo lo elegiría?** | Para desarrollo web ágil y programar desde cualquier equipo con navegador
+
+ | Para análisis de datos, ciencia de datos o pruebas interactivas |
 ---
 
 ## 2. Módulos y extensiones (CE 2.b)
