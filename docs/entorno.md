@@ -89,30 +89,85 @@ Aquí tienes la tabla completa y lista para copiar y pegar directamente en el ap
 
 ## 3. Personalización y automatización (CE 2.c)
 
-- **Tema visual elegido** (paso 10) y por qué:
+- **Tema visual elegido** (paso 10) y por qué: Light 2026, elegido por preferencia personal de contraste claro y para facilitar la lectura del código durante el día.
 - **Ajuste del proyecto** (paso 10). ¿Qué archivo se ha creado y qué contiene?
+## 3. Personalización y automatización (CE 2.c)
+
+- **Ajuste del proyecto** (paso 10). ¿Qué archivo se ha creado y qué contiene?  
+  Se ha creado el archivo `.vscode/settings.json`. y cotine lo de abajo
 
 ```
-pega aquí el contenido de .vscode/settings.json
+{
+    "editor.formatOnSave": true
+}
 ```
 
-- **Atajo de teclado** (paso 11). ¿Qué acción, qué combinación y para qué te sirve?
+- **Atajo de teclado** (paso 11). ¿Qué acción, qué combinación y para qué te sirve? Acción: `Codespaces: Rebuild Container`.
+
+Combinación: `Cmd + Shift + 8` (en Mac)
+Sirve para reconstruir de manera rápida el entorno de desarrollo tras modificar los archivos de configuración, evitando navegar por los menús de VS Code.
+
 - **Snippet** (paso 12). ¿Qué escribes y qué aparece?
+
+  Escribo `cabecera` y al pulsar la tecla `Tab` o `Intro` aparece un bloque de comentario con mi nombre (Manuel Rizos), el nombre del archivo y la fecha actual.
+
 - **Automatización al crear el entorno** (paso 14). ¿Qué hace `postCreateCommand` y qué archivos/carpetas han aparecido después de reconstruir?
+
+Ejecuta automáticamente el comando `npm install` al inicializar el contenedor. Tras la reconstrucción han aparecido la carpeta `node_modules/` y el archivo `package-lock.json`.
+
 - **Tareas** (paso 13). ¿Cuántas tareas hay en `tasks.json` y qué hace cada una?
+
+Hay 3 tareas:
+  1. **Java: compilar, empaquetar y ejecutar**: Compila con `javac`, empaqueta en `build/factura.jar` y ejecuta con `java -jar`.
+  2. **TypeScript: compilar y ejecutar**: Ejecuta `npm run build` para compilar TypeScript a JavaScript y `npm start` para ejecutarlo con Node.js.
+  3. **Build completo (Java + TypeScript)**: Ejecuta automáticamente en secuencia las dos tareas anteriores (`dependsOn`).
+
 
 ¿Qué parte de toda esta configuración es **personal** (solo para ti) y qué parte es **del proyecto** (la recibe cualquiera que abra el repositorio)?
 
+El tema visual (*Color Theme*) y los atajos de teclado globales (`keybindings.json`), ya que quedan vinculados únicamente a las preferencias de tu cuenta de usuario en VS Code[cite: 1].
+- **Del proyecto (para cualquiera que abra el repositorio):** Toda la carpeta `.vscode/` (`settings.json`, `tasks.json`, `daw.code-snippets`) y la carpeta `.devcontainer/` (`devcontainer.json`), ya que están guardadas y rastreadas en Git, por lo que se comparten con cualquiera que clone el proyecto.
 > 
 
 ---
 
 ## 4. Ejecutables de diferentes lenguajes en el mismo entorno (CE 2.e)
 
-Salida completa de la tarea **Build completo** (paso 15):
+Salida completa de la tarea **Build completo** (paso 15):  
 
 ```
-pega aquí
+ *  Ejecutando tarea: mkdir -p build/java && javac -d build/java src/java/Factura.java && jar --create --file build/factura.jar --main-class Factura -C build/java . && java -jar build/factura.jar 
+
+=== FACTURA generada con Java 27 ===
+Dominio web anual              12.00 EUR
+Alojamiento web                59.90 EUR
+Logotipo corporativo          150.00 EUR
+-----------------------------------------
+Base imponible                221.90 EUR
+IVA (21 %)                     46.60 EUR
+TOTAL                         268.50 EUR
+ *  Las tareas reutilizarán el terminal, presione cualquier tecla para cerrarlo. 
+
+ *  Ejecutando tarea: npm run build && npm start 
+
+
+> plantilla-entorno-daw@1.0.0 build
+> tsc
+
+
+> plantilla-entorno-daw@1.0.0 start
+> node dist/factura.js
+
+=== FACTURA generada con Node.js v24.22.1 ===
+Dominio web anual              12.00 EUR
+Alojamiento web                59.90 EUR
+Logotipo corporativo          150.00 EUR
+-----------------------------------------
+Base imponible                221.90 EUR
+IVA (21 %)                     46.60 EUR
+TOTAL                         268.50 EUR
+ *  Las tareas reutilizarán el terminal, presione cualquier tecla para cerrarlo. 
+
 ```
 
 | Lenguaje | Archivo fuente | Herramienta que lo traduce | Archivo generado | Cómo se ejecuta |
